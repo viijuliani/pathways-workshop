@@ -1,13 +1,7 @@
-window.onload = function () {
+window.onload = function() {
 
-  const survey = document.getElementById("survey");
+  console.log("PAGE LOADED");
 
-  survey.innerHTML = `
-    <h2>JavaScript loaded successfully</h2>
-    <p>noUiSlider type: ${typeof noUiSlider}</p>
-  `;
-
-  console.log("JavaScript is running");
-  console.log("noUiSlider =", typeof noUiSlider);
+  console.log(document.body.innerHTML);
 
 };
