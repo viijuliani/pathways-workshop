@@ -1,7 +1,10 @@
 window.onload = function() {
 
-  console.log("PAGE LOADED");
+    const survey = document.getElementById("survey");
 
-  console.log(document.body.innerHTML);
+    console.log("Survey div:", survey);
+
+    survey.innerHTML =
+        "<h2>Everything works!</h2>";
 
 };
