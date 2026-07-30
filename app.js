@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbzXtx1hj2pzACB5cn7MWlBPs6CjTfidVI5bK0-MQNb-c2g_dKo_3uZmGZqNLkrMTVyH/exec";
+const API_URL = "YOUR_APPS_SCRIPT_URL";
 
 const pathways = [
   "Optimise Flexibility",
@@ -13,39 +13,38 @@ let currentPathway = 0;
 const survey = document.getElementById("survey");
 
 fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
+  .then(response => response.text())
+  .then(text => {
 
-    showPathway(data.criteria);
+    const data = JSON.parse(text);
+
+    renderPathway(data.criteria);
 
   })
   .catch(error => {
 
     survey.innerHTML =
-      "<p style='color:red'>Unable to load criteria.</p>";
+      "<p style='color:red'>Error loading criteria.</p>";
 
     console.error(error);
 
   });
 
-function showPathway(criteria) {
+function renderPathway(criteria) {
 
   let html = `
     <div class="card">
-
       <h2>${pathways[currentPathway]}</h2>
-
   `;
 
   criteria.forEach((criterion, index) => {
 
     html += `
-
       <div class="criterion">
 
         <h3>${criterion}</h3>
 
-        <label>Minimum Score</label>
+        <p>Minimum Score: <span id="minValue${index}">0</span></p>
 
         <input
           type="range"
@@ -53,10 +52,10 @@ function showPathway(criteria) {
           max="100"
           step="5"
           value="0"
-          id="min_${index}"
+          id="min${index}"
         >
 
-        <label>Maximum Score</label>
+        <p>Maximum Score: <span id="maxValue${index}">100</span></p>
 
         <input
           type="range"
@@ -64,26 +63,41 @@ function showPathway(criteria) {
           max="100"
           step="5"
           value="100"
-          id="max_${index}"
+          id="max${index}"
         >
 
       </div>
-
     `;
-
   });
 
   html += `
-
-      <button id="nextBtn">
-        ${currentPathway < pathways.length - 1 ? "Next" : "Weight Criteria"}
-      </button>
-
+      <button id="nextBtn">Next</button>
     </div>
-
   `;
 
   survey.innerHTML = html;
+
+  criteria.forEach((criterion, index) => {
+
+    document
+      .getElementById(`min${index}`)
+      .addEventListener("input", function () {
+
+        document.getElementById(`minValue${index}`)
+          .textContent = this.value;
+
+      });
+
+    document
+      .getElementById(`max${index}`)
+      .addEventListener("input", function () {
+
+        document.getElementById(`maxValue${index}`)
+          .textContent = this.value;
+
+      });
+
+  });
 
   document
     .getElementById("nextBtn")
@@ -93,14 +107,18 @@ function showPathway(criteria) {
 
       if (currentPathway < pathways.length) {
 
-        showPathway(criteria);
+        renderPathway(criteria);
 
       } else {
 
-        showWeighting(criteria);
+        survey.innerHTML = `
+          <div class="card">
+            <h2>Success!</h2>
+            <p>You have completed all 5 pathways.</p>
+          </div>
+        `;
 
       }
 
     });
-
 }
