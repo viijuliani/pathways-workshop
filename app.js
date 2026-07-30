@@ -2,29 +2,20 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzXtx1hj2pzACB5cn7MWlBP
 
 const survey = document.getElementById("survey");
 
-survey.innerHTML = "Connecting to workshop...";
+survey.innerHTML = "Connecting...";
 
 fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
+  .then(response => {
+    survey.innerHTML =
+      "Response status: " + response.status;
 
-    survey.innerHTML = "<h2>Workshop Criteria</h2>";
-
-    data.criteria.forEach(criteria => {
-
-      const p = document.createElement("p");
-      p.textContent = criteria;
-
-      survey.appendChild(p);
-
-    });
-
+    return response.text();
+  })
+  .then(text => {
+    survey.innerHTML +=
+      "<pre>" + text + "</pre>";
   })
   .catch(error => {
-
     survey.innerHTML =
-      "<p style='color:red'>Error connecting to Google Sheets</p>";
-
-    console.error(error);
-
+      "ERROR: " + error;
   });
