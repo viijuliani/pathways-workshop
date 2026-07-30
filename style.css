@@ -67,3 +67,19 @@ button:hover {
     color: #666;
     font-size: 14px;
 }
+
+#slider {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #666;
+}
+
+.noUi-connect {
+    background: #2563eb;
+}
