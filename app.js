@@ -17,6 +17,9 @@ const responses = {};
 
 const weights = {};
 
+const participantId =
+    "P" + Date.now();
+
 window.onload = function () {
 
     loadCriteria();
@@ -330,27 +333,81 @@ function attachWeightEvents() {
 
 }
 
-function submitSurvey() {
-
-    console.log("Responses:");
-    console.log(responses);
-
-    console.log("Weights:");
-    console.log(weights);
+async function submitSurvey() {
 
     const survey =
         document.getElementById("survey");
 
     survey.innerHTML = `
         <div class="card">
-
-            <h2>Thank You</h2>
-
-            <p>
-                Your responses have been captured.
-            </p>
-
+            <h2>Submitting...</h2>
         </div>
     `;
+
+    try {
+
+        const response =
+            await fetch(API_URL, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    participantId,
+
+                    responses,
+
+                    weights
+
+                })
+
+            });
+
+        const result =
+            await response.json();
+
+        survey.innerHTML = `
+            <div class="card">
+
+                <h2>Thank You</h2>
+
+                <p>
+                    Your responses have been recorded.
+                </p>
+
+                <p>
+                    Response ID:
+                    ${participantId}
+                </p>
+
+            </div>
+        `;
+
+        console.log(result);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        survey.innerHTML = `
+            <div class="card">
+
+                <h2>Submission Failed</h2>
+
+                <p>
+                    Please notify the facilitator.
+                </p>
+
+            </div>
+        `;
+
+    }
 
 }
