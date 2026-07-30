@@ -1,4 +1,13 @@
-document.getElementById("survey").innerHTML =
-  "<h2>JavaScript loaded correctly</h2>";
+window.onload = function () {
 
-console.log("noUiSlider =", typeof noUiSlider);
+  const survey = document.getElementById("survey");
+
+  survey.innerHTML = `
+    <h2>JavaScript loaded successfully</h2>
+    <p>noUiSlider type: ${typeof noUiSlider}</p>
+  `;
+
+  console.log("JavaScript is running");
+  console.log("noUiSlider =", typeof noUiSlider);
+
+};
