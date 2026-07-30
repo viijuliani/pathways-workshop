@@ -157,4 +157,22 @@ function renderWeightingPage() {
     survey.innerHTML = `
         <div class="card">
 
-            <h2>Criteria 
+            <h2>Criteria Weighting</h2>
+
+            <p>
+                Weighting page coming next.
+            </p>
+
+            <pre>
+${JSON.stringify(responses, null, 2)}
+            </pre>
+
+        </div>
+    `;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
