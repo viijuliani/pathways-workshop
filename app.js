@@ -1,3 +1,6 @@
+const API_URL =
+    "https://script.google.com/macros/s/AKfycbzXtx1hj2pzACB5cn7MWlBPs6CjTfidVI5bK0-MQNb-c2g_dKo_3uZmGZqNLkrMTVyH/exec";
+
 const pathways = [
     "Optimise Flexibility",
     "Monetise Flexibility",
@@ -6,11 +9,7 @@ const pathways = [
     "Alternative to Flexibility"
 ];
 
-const criteria = [
-    "Equity",
-    "Sustainability",
-    "Cost"
-];
+let criteria = [];
 
 let currentPathway = 0;
 
@@ -18,9 +17,49 @@ const responses = {};
 
 window.onload = function () {
 
-    renderPathway();
+    loadCriteria();
 
 };
+
+async function loadCriteria() {
+
+    const survey =
+        document.getElementById("survey");
+
+    survey.innerHTML =
+        "<p>Loading workshop criteria...</p>";
+
+    try {
+
+        const response =
+            await fetch(API_URL);
+
+        const text =
+            await response.text();
+
+        const data =
+            JSON.parse(text);
+
+        criteria =
+            data.criteria;
+
+        renderPathway();
+
+    }
+
+    catch (error) {
+
+        survey.innerHTML = `
+            <p style="color:red">
+                Failed to load criteria.
+            </p>
+        `;
+
+        console.error(error);
+
+    }
+
+}
 
 function renderPathway() {
 
