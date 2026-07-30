@@ -104,25 +104,21 @@ criteria.forEach((criterion, index) => {
 });
 
   document
-    .getElementById("nextBtn")
-    .addEventListener("click", () => {
+  .getElementById("nextBtn")
+  .addEventListener("click", () => {
 
       currentPathway++;
 
       if (currentPathway < pathways.length) {
 
-        renderPathway(criteria);
+          renderPathway(criteria);
 
-      } else {
-
-        survey.innerHTML = `
-          <div class="card">
-            <h2>Success!</h2>
-            <p>You have completed all 5 pathways.</p>
-          </div>
-        `;
+          window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+          });
 
       }
 
-    });
+  });
 }
