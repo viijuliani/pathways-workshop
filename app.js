@@ -2,20 +2,30 @@ const API_URL = "https://script.google.com/macros/s/AKfycbzXtx1hj2pzACB5cn7MWlBP
 
 const survey = document.getElementById("survey");
 
-survey.innerHTML = "Connecting...";
+survey.innerHTML = "Loading criteria...";
 
 fetch(API_URL)
-  .then(response => {
-    survey.innerHTML =
-      "Response status: " + response.status;
+  .then(response => response.json())
+  .then(data => {
 
-    return response.text();
-  })
-  .then(text => {
-    survey.innerHTML +=
-      "<pre>" + text + "</pre>";
+    survey.innerHTML = "<h2>Workshop Criteria</h2>";
+
+    data.criteria.forEach(criteria => {
+
+      const p = document.createElement("p");
+
+      p.textContent = criteria;
+
+      survey.appendChild(p);
+
+    });
+
   })
   .catch(error => {
+
     survey.innerHTML =
-      "ERROR: " + error;
+      "<p style='color:red'>Error loading criteria.</p>";
+
+    console.error(error);
+
   });
