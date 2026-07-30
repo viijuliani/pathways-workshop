@@ -1,67 +1,39 @@
 body {
-
   font-family: Arial, sans-serif;
-
-  max-width: 900px;
-
-  margin: auto;
-
-  padding: 30px;
-
   background: #f5f7fa;
-
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
 }
 
 h1 {
-
   text-align: center;
-
 }
 
 .card {
-
   background: white;
-
-  padding: 25px;
-
   border-radius: 12px;
-
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-
+  padding: 25px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
 .criterion {
-
   margin-bottom: 30px;
-
 }
 
-input[type=range] {
-
+input[type="range"] {
   width: 100%;
-
-  margin-bottom: 15px;
-
 }
 
 button {
-
   background: #2563eb;
-
   color: white;
-
   border: none;
-
-  padding: 12px 20px;
-
+  padding: 12px 24px;
   border-radius: 8px;
-
   cursor: pointer;
-
 }
 
 button:hover {
-
   background: #1d4ed8;
-
 }
