@@ -37,3 +37,20 @@ button {
 button:hover {
   background: #1d4ed8;
 }
+
+.range-slider {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.range-values {
+    margin-top: 5px;
+    font-weight: bold;
+}
