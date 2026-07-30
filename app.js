@@ -27,3 +27,16 @@ fetch(API_URL)
   });
 
 });
+const pathways = [
+
+"Optimise Flexibility",
+
+"Monetise Flexibility",
+
+"Collectivise Flexibility",
+
+"Democratic Flexibility",
+
+"Alternative to Flexibility"
+
+];
