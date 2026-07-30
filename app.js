@@ -15,6 +15,8 @@ let currentPathway = 0;
 
 const responses = {};
 
+const weights = {};
+
 window.onload = function () {
 
     loadCriteria();
@@ -191,27 +193,164 @@ function saveAndNext() {
 
 function renderWeightingPage() {
 
-    const survey = document.getElementById("survey");
+    const survey =
+        document.getElementById("survey");
 
-    survey.innerHTML = `
+    let html = `
         <div class="card">
 
-            <h2>Criteria Weighting</h2>
+            <h2>Criteria Importance</h2>
 
             <p>
-                Weighting page coming next.
+                Allocate up to 4 importance points.
             </p>
+    `;
 
-            <pre>
-${JSON.stringify(responses, null, 2)}
-            </pre>
+    criteria.forEach((criterion, index) => {
+
+        if (!weights[criterion]) {
+            weights[criterion] = 0;
+        }
+
+        html += `
+            <div class="weight-row">
+
+                <span>${criterion}</span>
+
+                <div>
+
+                    <button
+                        class="minus-btn"
+                        data-criterion="${criterion}">
+                        -
+                    </button>
+
+                    <span
+                        id="weight-${index}"
+                        class="weight-value">
+                        ${weights[criterion]}
+                    </span>
+
+                    <button
+                        class="plus-btn"
+                        data-criterion="${criterion}">
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+    });
+
+    html += `
+
+            <div class="allocation">
+
+                Total Allocated:
+                <span id="totalAllocated">
+                    ${getTotalWeight()}
+                </span>
+                / 4
+
+            </div>
+
+            <div class="button-row">
+
+                <button id="submitBtn">
+                    Submit
+                </button>
+
+            </div>
 
         </div>
     `;
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    survey.innerHTML = html;
+
+    attachWeightEvents();
+
+}
+
+function getTotalWeight() {
+
+    return Object.values(weights)
+        .reduce((sum, value) => sum + value, 0);
+
+}
+
+function attachWeightEvents() {
+
+    document
+        .querySelectorAll(".plus-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const criterion =
+                    button.dataset.criterion;
+
+                if (getTotalWeight() < 4) {
+
+                    weights[criterion]++;
+
+                    renderWeightingPage();
+
+                }
+
+            });
+
+        });
+
+    document
+        .querySelectorAll(".minus-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const criterion =
+                    button.dataset.criterion;
+
+                if (weights[criterion] > 0) {
+
+                    weights[criterion]--;
+
+                    renderWeightingPage();
+
+                }
+
+            });
+
+        });
+
+    document
+        .getElementById("submitBtn")
+        .addEventListener("click", submitSurvey);
+
+}
+
+function submitSurvey() {
+
+    console.log("Responses:");
+    console.log(responses);
+
+    console.log("Weights:");
+    console.log(weights);
+
+    const survey =
+        document.getElementById("survey");
+
+    survey.innerHTML = `
+        <div class="card">
+
+            <h2>Thank You</h2>
+
+            <p>
+                Your responses have been captured.
+            </p>
+
+        </div>
+    `;
 
 }
