@@ -71,27 +71,37 @@ function renderPathway(criteria) {
 
   survey.innerHTML = html;
 
-  criteria.forEach((criterion, index) => {
+criteria.forEach((criterion, index) => {
 
-    document
-      .getElementById(`min${index}`)
-      .addEventListener("input", function () {
+    const slider =
+      document.getElementById(`slider${index}`);
+
+    noUiSlider.create(slider, {
+
+        start: [0, 100],
+
+        connect: true,
+
+        step: 5,
+
+        range: {
+            min: 0,
+            max: 100
+        }
+
+    });
+
+    slider.noUiSlider.on('update', function(values) {
 
         document.getElementById(`minValue${index}`)
-          .textContent = this.value;
-
-      });
-
-    document
-      .getElementById(`max${index}`)
-      .addEventListener("input", function () {
+            .textContent = Math.round(values[0]);
 
         document.getElementById(`maxValue${index}`)
-          .textContent = this.value;
+            .textContent = Math.round(values[1]);
 
-      });
+    });
 
-  });
+});
 
   document
     .getElementById("nextBtn")
