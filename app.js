@@ -346,30 +346,23 @@ async function submitSurvey() {
 
     try {
 
-        const response =
-            await fetch(API_URL, {
+        await fetch(API_URL, {
 
-                method: "POST",
+    method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
+    mode: "no-cors",
 
-                body: JSON.stringify({
+    body: JSON.stringify({
 
-                    participantId,
+        participantId,
 
-                    responses,
+        responses,
 
-                    weights
+        weights
 
-                })
+    })
 
-            });
-
-        const result =
-            await response.json();
+});
 
         survey.innerHTML = `
             <div class="card">
@@ -387,8 +380,6 @@ async function submitSurvey() {
 
             </div>
         `;
-
-        console.log(result);
 
     }
 
