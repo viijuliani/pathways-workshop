@@ -72,3 +72,29 @@ h3 {
 
 .noUi-handle {
     width
+
+.weight-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.weight-row button {
+    width: 40px;
+    padding: 8px;
+}
+
+.weight-value {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.allocation {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #2563eb;
+}
