@@ -1,108 +1,74 @@
+/* ===== GENERAL ===== */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
-  max-width: 900px;
-  margin: auto;
-  padding: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 30px;
+    color: #222;
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 30px;
 }
+
+h2 {
+    color: #1e3a8a;
+    margin-top: 0;
+}
+
+h3 {
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* ===== CARD ===== */
 
 .card {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    background: white;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
+
+/* ===== CRITERIA ===== */
 
 .criterion {
-  margin-bottom: 30px;
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #ececec;
 }
 
-input[type="range"] {
-  width: 100%;
+.criterion:last-child {
+    border-bottom: none;
 }
 
-button {
-  background: #2563eb;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-}
+/* ===== SLIDER ===== */
 
-button:hover {
-  background: #1d4ed8;
-}
-
-.range-slider {
+[id^="slider"] {
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
-.scale-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.range-values {
-    margin-top: 5px;
-    font-weight: bold;
-}
-
-#slider {
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-.scale-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    color: #666;
-    font-size: 14px;
-}
-
-#slider {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.scale-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    color: #666;
+.noUi-target {
+    border: none;
+    box-shadow: none;
+    background: #dbeafe;
+    height: 10px;
 }
 
 .noUi-connect {
     background: #2563eb;
 }
 
-.card {
-    background: white;
-    padding: 24px;
-    border-radius: 12px;
-}
-
-.criterion {
-    margin-bottom: 40px;
-}
-
-button {
-    background: #2563eb;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1d4ed8;
-}
+.noUi-handle {
+    width
