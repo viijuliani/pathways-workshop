@@ -83,3 +83,26 @@ button:hover {
 .noUi-connect {
     background: #2563eb;
 }
+
+.card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.criterion {
+    margin-bottom: 40px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
