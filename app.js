@@ -44,27 +44,21 @@ function renderPathway(criteria) {
 
         <h3>${criterion}</h3>
 
-        <p>Minimum Score: <span id="minValue${index}">0</span></p>
+          <div id="slider${index}" class="range-slider"></div>
 
-        <input
-          type="range"
-          min="0"
-          max="100"
-          step="5"
-          value="0"
-          id="min${index}"
-        >
-
-        <p>Maximum Score: <span id="maxValue${index}">100</span></p>
-
-        <input
-          type="range"
-          min="0"
-          max="100"
-          step="5"
-          value="100"
-          id="max${index}"
-        >
+            <div class="scale-labels">
+                <span>0</span>
+                <span>50</span>
+                <span>100</span>
+            </div>
+        
+            <div class="range-values">
+                Min:
+                <span id="minValue${index}">0</span>
+        
+                Max:
+                <span id="maxValue${index}">100</span>
+            </div>
 
       </div>
     `;
