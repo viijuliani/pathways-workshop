@@ -546,10 +546,163 @@ function renderWeightingPage() {
 
 }
 
+function renderWeightedDashboard() {
+
+    const survey =
+        document.getElementById("survey");
+
+    survey.innerHTML = `
+
+        <div class="card">
+
+            <h2>
+                Weighted Results
+            </h2>
+
+            <p>
+                Results after applying your criterion weightings.
+            </p>
+
+            <div
+                id="weightedChart">
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    id="finalSubmitBtn">
+
+                    Submit Final Response
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+    renderWeightedChart();
+
+    document
+        .getElementById(
+            "finalSubmitBtn"
+        )
+        .addEventListener(
+            "click",
+            submitSurvey
+        );
+
+}
+
 function getTotalWeight() {
 
     return Object.values(weights)
         .reduce((sum, value) => sum + value, 0);
+
+}
+
+function calculateWeightedPathway(pathway) {
+
+    let weightedMin = 0;
+
+    let weightedMax = 0;
+
+    let totalWeight = 0;
+
+    criteria.forEach(criterion => {
+
+        const weight =
+            weights[criterion];
+
+        const score =
+            responses[pathway][criterion];
+
+        weightedMin +=
+            score.min * weight;
+
+        weightedMax +=
+            score.max * weight;
+
+        totalWeight += weight;
+
+    });
+
+    return {
+
+        low:
+            weightedMin / totalWeight,
+
+        high:
+            weightedMax / totalWeight
+
+    };
+
+}
+
+function renderWeightedChart() {
+
+    const container =
+        document.getElementById(
+            "weightedChart"
+        );
+
+    let html = "";
+
+    pathways.forEach(pathway => {
+
+        const rank =
+            calculateWeightedPathway(
+                pathway
+            );
+
+        html += `
+
+            <div
+                class="weighted-row">
+
+                <div
+                    class="weighted-label">
+
+                    ${pathway}
+
+                </div>
+
+                <div
+                    class="weighted-track">
+
+                    <div
+                        class="weighted-range"
+
+                        style="
+                            left:${rank.low}%;
+
+                            width:${
+                                rank.high
+                                -
+                                rank.low
+                            }%;
+                        ">
+                    </div>
+
+                </div>
+
+                <div
+                    class="weighted-values">
+
+                    ${Math.round(rank.low)}
+                    -
+                    ${Math.round(rank.high)}
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    container.innerHTML = html;
 
 }
 
@@ -610,7 +763,7 @@ function attachWeightEvents() {
             return;
         }
 
-        submitSurvey();
+            renderWeightedDashboard();
 
     });
 
