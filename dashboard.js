@@ -39,3 +39,5 @@ document
     .addEventListener("click", loadCount);
 
 loadCount();
+
+setInterval(loadCount, 30000);
