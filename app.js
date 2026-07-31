@@ -261,7 +261,10 @@ function renderWeightingPage() {
 
             <div class="button-row">
 
-                <button id="submitBtn">
+                <button
+                    id="submitBtn"
+                    ${getTotalWeight() !== 4 ? "disabled" : ""}
+                >
                     Submit
                 </button>
 
