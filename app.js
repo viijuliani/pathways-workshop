@@ -963,11 +963,17 @@ function renderWeightedPathwayCharts() {
 
     criteria.forEach(criterion => {
 
-        html += `
-            <div class="criteria-label">
-                ${criterion}
-            </div>
-        `;
+            html += `
+                <div class="criteria-label">
+            
+                    ${criterion}
+            
+                    <span class="criterion-weight">
+                        (${weights[criterion]})
+                    </span>
+            
+                </div>
+            `;
 
     });
 
