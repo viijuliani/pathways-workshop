@@ -386,11 +386,19 @@ h3 {
 
     position: relative;
 
-    height: 28px;
+    width: 100%;
 
-    background: #eceff1;
+    height: 30px;
+
+    background: #dfe3e8;
+
+    border: 1px solid #999;
 
     border-radius: 4px;
+
+    margin-top: 5px;
+
+    margin-bottom: 5px;
 
 }
 
@@ -400,13 +408,13 @@ h3 {
 
     top: 0;
 
-    height: 28px;
+    height: 100%;
 
     background: orange;
 
     border: 2px solid black;
 
-    border-radius: 4px;
+    box-sizing: border-box;
 
 }
 
