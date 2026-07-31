@@ -328,8 +328,21 @@ function attachWeightEvents() {
         });
 
     document
-        .getElementById("submitBtn")
-        .addEventListener("click", submitSurvey);
+    .getElementById("submitBtn")
+    .addEventListener("click", () => {
+
+        if (getTotalWeight() !== 4) {
+
+            alert(
+                "Please allocate exactly 4 weighting points before submitting."
+            );
+
+            return;
+        }
+
+        submitSurvey();
+
+    });
 
 }
 
