@@ -238,3 +238,43 @@ h3 {
     border: 1px solid #333;
 
 }
+
+.pathway-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(350px, 1fr)
+        );
+
+    gap: 20px;
+
+    margin-top: 30px;
+
+}
+
+.pathway-card {
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    box-shadow:
+        0 1px 4px
+        rgba(0,0,0,0.05);
+
+}
+
+.pathway-card h3 {
+
+    margin-top: 0;
+
+    color: #1e3a8a;
+
+}
