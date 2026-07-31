@@ -252,14 +252,109 @@ function saveAndNext() {
     currentPathway++;
 
     if (currentPathway < pathways.length) {
-
+    
         renderPathway();
-
+    
     } else {
+    
+        renderWaitingRoom();
+    
+    }
 
-        renderResultsDashboard();
+}
+
+function startStagePolling() {
+
+    checkStage();
+
+    setInterval(
+        checkStage,
+        15000
+    );
+
+}
+
+async function checkStage() {
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL +
+                "?action=stage"
+            );
+
+        const data =
+            await response.json();
+
+        const status =
+            document.getElementById(
+                "stageStatus"
+            );
+
+        if (status) {
+
+            status.textContent =
+                "Current stage: " +
+                data.stage;
+
+        }
+
+        if (
+            data.stage ===
+            "WEIGHTING"
+        ) {
+
+            renderWeightingPage();
+
+        }
 
     }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+function renderWaitingRoom() {
+
+    const survey =
+        document.getElementById(
+            "survey"
+        );
+
+    survey.innerHTML = `
+
+        <div class="card">
+
+            <h2>
+                Assessment Complete
+            </h2>
+
+            <p>
+                Thank you for completing
+                the pathway assessment.
+            </p>
+
+            <p>
+                Please wait for
+                instructions from the
+                facilitator.
+            </p>
+
+            <h3 id="stageStatus">
+                Current stage:
+                SCORING
+            </h3>
+
+        </div>
+
+    `;
+
+    startStagePolling();
 
 }
 
