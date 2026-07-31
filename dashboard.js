@@ -60,29 +60,64 @@ async function loadSummary() {
 
             const p = data[pathway];
 
+            const leftWhisker =
+                p.extremeMin;
+
+            const boxStart =
+                p.meanMin;
+            
+            const median =
+                p.meanMid;
+            
+            const boxEnd =
+                p.meanMax;
+            
+            const rightWhisker =
+                p.extremeMax;
+            
             html += `
-                <div class="summary-row">
-
-                    <div class="pathway-name">
-                        ${pathway}
-                    </div>
-
-                    <div class="pathway-values">
-                        Mean Min:
-                        ${Math.round(p.meanMin)}
-
-                        |
-
-                        Mean Mid:
-                        ${Math.round(p.meanMid)}
-
-                        |
-
-                        Mean Max:
-                        ${Math.round(p.meanMax)}
-                    </div>
-
+            <div class="summary-row">
+            
+                <div class="pathway-name">
+                    ${pathway}
                 </div>
+            
+                <div class="chart-container">
+            
+                    <div
+                        class="whisker-left"
+                        style="
+                            left:${leftWhisker}%;
+                            width:${boxStart-leftWhisker}%;
+                        ">
+                    </div>
+            
+                    <div
+                        class="box-range"
+                        style="
+                            left:${boxStart}%;
+                            width:${boxEnd-boxStart}%;
+                        ">
+                    </div>
+            
+                    <div
+                        class="median-line"
+                        style="
+                            left:${median}%;
+                        ">
+                    </div>
+            
+                    <div
+                        class="whisker-right"
+                        style="
+                            left:${boxEnd}%;
+                            width:${rightWhisker-boxEnd}%;
+                        ">
+                    </div>
+            
+                </div>
+            
+            </div>
             `;
 
         });
