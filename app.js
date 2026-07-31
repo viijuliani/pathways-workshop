@@ -21,6 +21,7 @@ const results = {};
 
 const participantId =
     "P" + Date.now();
+let taskCompleted = false;
 
 window.onload = function () {
 
@@ -303,10 +304,12 @@ async function checkStage() {
         if (
             data.stage ===
             "WEIGHTING"
+            &&
+            !taskCompleted
         ) {
-
+        
             renderWeightingPage();
-
+        
         }
 
     }
@@ -1240,6 +1243,8 @@ async function submitSurvey() {
     })
 
 });
+        
+        taskCompleted = true;
 
         localStorage.setItem(
             "surveySubmitted",
