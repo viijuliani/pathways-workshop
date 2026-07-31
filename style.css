@@ -368,12 +368,6 @@ h3 {
 
 }
 
-.weighted-row {
-
-    margin-bottom: 25px;
-
-}
-
 .weighted-label {
 
     font-weight: bold;
@@ -381,50 +375,3 @@ h3 {
     margin-bottom: 5px;
 
 }
-
-.weighted-track {
-
-    position: relative;
-
-    width: 100%;
-
-    height: 30px;
-
-    background: #dfe3e8;
-
-    border: 1px solid #999;
-
-    border-radius: 4px;
-
-    margin-top: 5px;
-
-    margin-bottom: 5px;
-
-}
-
-.weighted-range {
-
-    position: absolute;
-
-    top: 0;
-
-    height: 100%;
-
-    background: orange;
-
-    border: 2px solid black;
-
-    box-sizing: border-box;
-
-}
-
-.weighted-values {
-
-    margin-top: 4px;
-
-    font-size: 13px;
-
-    color: #555;
-
-}
-
