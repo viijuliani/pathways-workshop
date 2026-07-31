@@ -80,23 +80,34 @@ async function loadSummary() {
                 p.extremeMax;
             
            html += `
-            <div class="summary-row">
-            
-                <div class="pathway-name">
-                    ${pathway}
+                <div class="summary-row">
+                
+                    <div class="pathway-name">
+                        ${pathway}
+                    </div>
+                
+                    <div class="chart-container">
+                
+                        <div
+                            class="box-range"
+                            style="
+                                left:${p.meanMin}%;
+                                width:${p.meanMax - p.meanMin}%;
+                            ">
+                        </div>
+                
+                        <div
+                            class="median-line"
+                            style="
+                                left:${p.meanMid}%;
+                            ">
+                        </div>
+                
+                    </div>
+                
                 </div>
-            
-                <div
-                    style="
-                        background:red;
-                        height:20px;
-                        width:80%;
-                        margin-bottom:20px;
-                    ">
-                </div>
-            
-            </div>
-            `;
+                `;
+
         });
 
         console.log(html);
