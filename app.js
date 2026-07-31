@@ -933,9 +933,10 @@ function renderImpactSummary() {
 
     });
 
-    container.innerHTML = html;
-
+    console.log("RESULTS");
     console.log(results);
+
+    container.innerHTML = html;
 
 }
 
