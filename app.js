@@ -22,9 +22,54 @@ const participantId =
 
 window.onload = function () {
 
-    loadCriteria();
+    showWelcomeScreen();
 
 };
+
+function showWelcomeScreen() {
+
+    const survey =
+        document.getElementById("survey");
+
+    survey.innerHTML = `
+        <div class="card">
+
+            <h2>Welcome</h2>
+
+            <p>
+                Welcome to the Pathways to Flexibility workshop.
+            </p>
+
+            <p>
+                During this exercise you will:
+            </p>
+
+            <ul>
+                <li>Score 5 flexibility pathways</li>
+                <li>Define uncertainty ranges</li>
+                <li>Weight the importance of evaluation criteria</li>
+            </ul>
+
+            <p>
+                Estimated completion time: 5 minutes.
+            </p>
+
+            <div class="button-row">
+
+                <button id="startBtn">
+                    Start Survey
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document
+        .getElementById("startBtn")
+        .addEventListener("click", loadCriteria);
+
+}
 
 async function loadCriteria() {
 
