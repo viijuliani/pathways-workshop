@@ -244,12 +244,9 @@ h3 {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(350px, 1fr)
-        );
+        repeat(5, 1fr);
 
-    gap: 20px;
+    gap: 15px;
 
     margin-top: 30px;
 
@@ -261,13 +258,11 @@ h3 {
 
     border: 1px solid #e5e7eb;
 
-    border-radius: 12px;
+    border-radius: 8px;
 
-    padding: 15px;
+    padding: 10px;
 
-    box-shadow:
-        0 1px 4px
-        rgba(0,0,0,0.05);
+    font-size: 12px;
 
 }
 
@@ -278,3 +273,12 @@ h3 {
     color: #1e3a8a;
 
 }
+
+.criterion-chart {
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+
+}
+
