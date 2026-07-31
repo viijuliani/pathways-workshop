@@ -470,9 +470,9 @@ function renderWeightingPage() {
         <div class="card">
 
             <h2>Criteria Importance</h2>
-
+            
             <p>
-                Allocate up to 4 importance points.
+                Allocate exactly 5 importance points.
             </p>
     `;
 
@@ -522,7 +522,7 @@ function renderWeightingPage() {
                 <span id="totalAllocated">
                     ${getTotalWeight()}
                 </span>
-                / 4
+                / 5
 
             </div>
 
@@ -530,7 +530,7 @@ function renderWeightingPage() {
 
                 <button
                     id="submitBtn"
-                    ${getTotalWeight() !== 4 ? "disabled" : ""}
+                    ${getTotalWeight() !== 5 ? "disabled" : ""}
                 >
                     Review Weighted Results
                 </button>
@@ -564,7 +564,7 @@ function attachWeightEvents() {
                 const criterion =
                     button.dataset.criterion;
 
-                if (getTotalWeight() < 4) {
+                if (getTotalWeight() < 5) {
 
                     weights[criterion]++;
 
@@ -601,10 +601,10 @@ function attachWeightEvents() {
     .getElementById("submitBtn")
     .addEventListener("click", () => {
 
-        if (getTotalWeight() !== 4) {
+        if (getTotalWeight() !== 5) {
 
             alert(
-                "Please allocate exactly 4 weighting points before submitting."
+                "Please allocate exactly 5 weighting points before submitting."
             );
 
             return;
