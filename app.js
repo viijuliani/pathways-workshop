@@ -436,11 +436,18 @@ function renderPathwayCharts() {
                         class="range-bar"
                         style="
                             left:${score.min}%;
-
+                
                             width:${score.max - score.min}%;
                         ">
                     </div>
-
+                
+                    <div
+                        class="range-midpoint"
+                        style="
+                            left:${(score.min + score.max) / 2}%;
+                        ">
+                    </div>
+                
                 </div>
 
             `;
@@ -987,15 +994,18 @@ function renderWeightedPathwayCharts() {
                         class="range-bar"
                         style="
                             left:${weightedMin}%;
-
-                            width:${
-                                weightedMax
-                                -
-                                weightedMin
-                            }%;
+                
+                            width:${weightedMax - weightedMin}%;
                         ">
                     </div>
-
+                
+                    <div
+                        class="range-midpoint"
+                        style="
+                            left:${(weightedMin + weightedMax) / 2}%;
+                        ">
+                    </div>
+                
                 </div>
 
             `;
