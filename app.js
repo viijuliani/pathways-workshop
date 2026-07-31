@@ -278,7 +278,10 @@ function renderResultsDashboard() {
 
             <hr>
 
-            <div id="pathwayCharts"></div>
+            <div
+                id="pathwayCharts"
+                class="pathway-grid">
+            </div>
 
             <div class="button-row">
 
@@ -386,7 +389,9 @@ function renderPathwayCharts() {
     pathways.forEach(pathway => {
 
         html += `
-            <h3>${pathway}</h3>
+            <div class="pathway-card">
+
+                <h3>${pathway}</h3>
         `;
 
         criteria.forEach(criterion => {
@@ -410,11 +415,7 @@ function renderPathwayCharts() {
                             style="
                                 left:${score.min}%;
 
-                                width:${
-                                    score.max
-                                    -
-                                    score.min
-                                }%;
+                                width:${score.max - score.min}%;
                             ">
                         </div>
 
@@ -425,6 +426,10 @@ function renderPathwayCharts() {
             `;
 
         });
+
+        html += `
+            </div>
+        `;
 
     });
 
