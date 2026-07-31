@@ -15,6 +15,7 @@ async function loadCount() {
 
         const data =
             JSON.parse(text);
+            console.log(data);
 
         document
             .getElementById("counter")
