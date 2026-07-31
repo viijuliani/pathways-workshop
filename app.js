@@ -1202,7 +1202,7 @@ function attachWeightEvents() {
             return;
         }
 
-            renderWeightedDashboard();
+        submitSurvey();
 
     });
 
@@ -1247,18 +1247,20 @@ async function submitSurvey() {
         );
         survey.innerHTML = `
             <div class="card">
-
-                <h2>Thank You</h2>
-
+        
+                <h2>
+                    Task Complete
+                </h2>
+        
                 <p>
-                    Your responses have been recorded.
+                    Thank you for participating.
                 </p>
-
+        
                 <p>
-                    Response ID:
-                    ${participantId}
+                    Please return your attention
+                    to the workshop facilitator.
                 </p>
-
+        
             </div>
         `;
 
