@@ -79,51 +79,24 @@ async function loadSummary() {
             const rightWhisker =
                 p.extremeMax;
             
-            html += `
+           html += `
             <div class="summary-row">
             
                 <div class="pathway-name">
                     ${pathway}
                 </div>
             
-                <div class="chart-container">
-            
-                    <div
-                        class="whisker-left"
-                        style="
-                            left:${leftWhisker}%;
-                            width:${boxStart-leftWhisker}%;
-                        ">
-                    </div>
-            
-                    <div
-                        class="box-range"
-                        style="
-                            left:${boxStart}%;
-                            width:${boxEnd-boxStart}%;
-                        ">
-                    </div>
-            
-                    <div
-                        class="median-line"
-                        style="
-                            left:${median}%;
-                        ">
-                    </div>
-            
-                    <div
-                        class="whisker-right"
-                        style="
-                            left:${boxEnd}%;
-                            width:${rightWhisker-boxEnd}%;
-                        ">
-                    </div>
-            
+                <div
+                    style="
+                        background:red;
+                        height:20px;
+                        width:80%;
+                        margin-bottom:20px;
+                    ">
                 </div>
             
             </div>
             `;
-
         });
 
         console.log(html);
