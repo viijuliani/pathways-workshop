@@ -112,3 +112,13 @@ h3 {
     justify-content: flex-end;
     margin-top: 30px;
 }
+
+#status {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+#counter {
+    color: #2563eb;
+}
