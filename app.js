@@ -567,6 +567,8 @@ function renderWeightedDashboard() {
 
             <div id="weightedAggregateChart"></div>
 
+            <div id="impactSummary"></div>
+
             <hr>
 
             <div
@@ -588,20 +590,22 @@ function renderWeightedDashboard() {
 
     `;
 
-    renderWeightSummary();
-
-    renderWeightedAggregateChart();
-
-    renderWeightedPathwayCharts();
-
-    document
-        .getElementById(
-            "finalSubmitBtn"
-        )
-        .addEventListener(
-            "click",
-            submitSurvey
-        );
+        renderWeightSummary();
+        
+        renderWeightedAggregateChart();
+        
+        renderImpactSummary();
+        
+        renderWeightedPathwayCharts();
+        
+        document
+            .getElementById(
+                "finalSubmitBtn"
+            )
+            .addEventListener(
+                "click",
+                submitSurvey
+            );
 
 }
 
@@ -695,6 +699,64 @@ function calculateWeightedPathway(pathway) {
 
 }
 
+function calculateUnweightedAverage(pathway) {
+
+    let total = 0;
+
+    let count = 0;
+
+    criteria.forEach(criterion => {
+
+        const score =
+            responses[pathway][criterion];
+
+        const midpoint =
+            (
+                score.min +
+                score.max
+            ) / 2;
+
+        total += midpoint;
+
+        count++;
+
+    });
+
+    return total / count;
+
+}
+
+function calculateWeightedAverage(pathway) {
+
+    let totalWeightedScore = 0;
+
+    let totalWeight = 0;
+
+    criteria.forEach(criterion => {
+
+        const weight =
+            weights[criterion];
+
+        const score =
+            responses[pathway][criterion];
+
+        const midpoint =
+            (
+                score.min +
+                score.max
+            ) / 2;
+
+        totalWeightedScore +=
+            midpoint * weight;
+
+        totalWeight += weight;
+
+    });
+
+    return totalWeightedScore / totalWeight;
+
+}
+
 function renderWeightedAggregateChart() {
 
     const container =
@@ -758,6 +820,90 @@ function renderWeightedAggregateChart() {
                 <small>
                     ${weightedAverage.toFixed(1)}
                 </small>
+
+            </div>
+
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+function renderImpactSummary() {
+
+    const container =
+        document.getElementById(
+            "impactSummary"
+        );
+
+    let html = `
+
+        <h3>
+            Impact of Weighting
+        </h3>
+
+    `;
+
+    pathways.forEach(pathway => {
+
+        const unweighted =
+            calculateUnweightedAverage(
+                pathway
+            );
+
+        const weighted =
+            calculateWeightedAverage(
+                pathway
+            );
+
+        const difference =
+            weighted - unweighted;
+
+        let symbol = "→";
+
+        if (difference > 0) {
+            symbol = "▲";
+        }
+
+        if (difference < 0) {
+            symbol = "▼";
+        }
+
+        html += `
+
+            <div
+                class="impact-row">
+
+                <div class="impact-name">
+
+                    ${pathway}
+
+                </div>
+
+                <div>
+
+                    Unweighted:
+                    ${unweighted.toFixed(1)}
+
+                    &nbsp;&nbsp;
+
+                    Weighted:
+                    ${weighted.toFixed(1)}
+
+                    &nbsp;&nbsp;
+
+                    <strong>
+
+                        ${symbol}
+
+                        ${difference > 0 ? "+" : ""}
+                        ${difference.toFixed(1)}
+
+                    </strong>
+
+                </div>
 
             </div>
 
