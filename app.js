@@ -17,6 +17,8 @@ const responses = {};
 
 const weights = {};
 
+const results = {};
+
 const participantId =
     "P" + Date.now();
 
@@ -867,6 +869,19 @@ function renderImpactSummary() {
 
         const difference =
             weighted - unweighted;
+            
+            results[pathway] = {
+
+                unweighted:
+                    unweighted,
+            
+                weighted:
+                    weighted,
+            
+                difference:
+                    difference
+            
+            };
 
         let symbol = "→";
 
@@ -1109,13 +1124,15 @@ async function submitSurvey() {
     mode: "no-cors",
 
     body: JSON.stringify({
-
+    
         participantId,
-
+    
         responses,
-
-        weights
-
+    
+        weights,
+    
+        results
+    
     })
 
 });
