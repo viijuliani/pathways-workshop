@@ -563,6 +563,8 @@ function renderWeightedDashboard() {
                 Results after applying your criterion weightings.
             </p>
 
+            <div id="weightSummary"></div>
+
             <div id="weightedAggregateChart"></div>
 
             <hr>
@@ -586,6 +588,8 @@ function renderWeightedDashboard() {
 
     `;
 
+    renderWeightSummary();
+
     renderWeightedAggregateChart();
 
     renderWeightedPathwayCharts();
@@ -598,6 +602,51 @@ function renderWeightedDashboard() {
             "click",
             submitSurvey
         );
+
+}
+
+function renderWeightSummary() {
+
+    const container =
+        document.getElementById(
+            "weightSummary"
+        );
+
+    let html = `
+
+        <div class="weight-summary-card">
+
+            <h3>
+                Your Weightings
+            </h3>
+
+    `;
+
+    criteria.forEach(criterion => {
+
+        html += `
+
+            <div class="weight-summary-row">
+
+                <span>
+                    ${criterion}
+                </span>
+
+                <strong>
+                    ${weights[criterion]}
+                </strong>
+
+            </div>
+
+        `;
+
+    });
+
+    html += `
+        </div>
+    `;
+
+    container.innerHTML = html;
 
 }
 
