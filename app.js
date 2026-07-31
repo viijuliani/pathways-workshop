@@ -656,46 +656,29 @@ function renderWeightedChart() {
                 pathway
             );
 
+        console.log(pathway, rank);
+
         html += `
 
-            <div
-                class="weighted-row">
+            <div class="weighted-row">
 
-                <div
-                    class="weighted-label">
-
+                <div class="weighted-label">
                     ${pathway}
-
                 </div>
 
-                <div
-                    class="weighted-track">
+                <div class="weighted-track">
 
                     <div
+                        class="weighted-range"
                         style="
-                            position:relative;
-                            height:30px;
-                            background:red;
-                            margin-bottom:10px;
+                            left:${rank.low}%;
+                            width:${rank.high - rank.low}%;
                         ">
-                    
-                        <div
-                            style="
-                                position:absolute;
-                                left:${rank.low}%;
-                                width:${rank.high - rank.low}%;
-                                height:30px;
-                                background:orange;
-                                border:2px solid black;
-                            ">
-                        </div>
-                    
                     </div>
 
                 </div>
 
-                <div
-                    class="weighted-values">
+                <div class="weighted-values">
 
                     ${Math.round(rank.low)}
                     -
