@@ -22,6 +22,28 @@ const participantId =
 
 window.onload = function () {
 
+    if (
+        localStorage.getItem("surveySubmitted")
+    ) {
+
+        const survey =
+            document.getElementById("survey");
+
+        survey.innerHTML = `
+            <div class="card">
+
+                <h2>Response Already Submitted</h2>
+
+                <p>
+                    This device has already submitted a response.
+                </p>
+
+            </div>
+        `;
+
+        return;
+    }
+
     showWelcomeScreen();
 
 };
@@ -425,6 +447,10 @@ async function submitSurvey() {
 
 });
 
+        localStorage.setItem(
+            "surveySubmitted",
+            "true"
+        );
         survey.innerHTML = `
             <div class="card">
 
