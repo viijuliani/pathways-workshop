@@ -563,8 +563,12 @@ function renderWeightedDashboard() {
                 Results after applying your criterion weightings.
             </p>
 
+            <div id="weightedAggregateChart"></div>
+
+            <hr>
+
             <div
-                id="weightedChart">
+                id="weightedPathwayCharts">
             </div>
 
             <div class="button-row">
@@ -582,7 +586,9 @@ function renderWeightedDashboard() {
 
     `;
 
-    renderWeightedChart();
+    renderWeightedAggregateChart();
+
+    renderWeightedPathwayCharts();
 
     document
         .getElementById(
@@ -640,57 +646,176 @@ function calculateWeightedPathway(pathway) {
 
 }
 
-function renderWeightedChart() {
+function renderWeightedAggregateChart() {
 
     const container =
         document.getElementById(
-            "weightedChart"
+            "weightedAggregateChart"
         );
 
-    let html = "";
+    let html =
+        "<h3>Weighted Overall Pathway Scores</h3>";
 
     pathways.forEach(pathway => {
 
-        const rank =
-            calculateWeightedPathway(
-                pathway
-            );
+        let totalWeightedScore = 0;
 
-        console.log(pathway, rank);
+        let totalWeight = 0;
+
+        criteria.forEach(criterion => {
+
+            const weight =
+                weights[criterion];
+
+            const score =
+                responses[pathway][criterion];
+
+            const midpoint =
+                (
+                    score.min +
+                    score.max
+                ) / 2;
+
+            totalWeightedScore +=
+                midpoint * weight;
+
+            totalWeight += weight;
+
+        });
+
+        const weightedAverage =
+            totalWeightedScore /
+            totalWeight;
 
         html += `
 
-            <div class="weighted-row">
+            <div class="simple-bar-row">
 
-                <div class="weighted-label">
+                <div>
                     ${pathway}
                 </div>
 
-                <div class="weighted-track">
+                <div class="simple-bar">
 
                     <div
-                        class="weighted-range"
+                        class="simple-fill"
                         style="
-                            left:${rank.low}%;
-                            width:${rank.high - rank.low}%;
+                        width:${weightedAverage}%;
                         ">
                     </div>
 
                 </div>
 
-                <div class="weighted-values">
-
-                    ${Math.round(rank.low)}
-                    -
-                    ${Math.round(rank.high)}
-
-                </div>
+                <small>
+                    ${weightedAverage.toFixed(1)}
+                </small>
 
             </div>
 
         `;
 
     });
+
+    container.innerHTML = html;
+
+}
+
+function renderWeightedPathwayCharts() {
+
+    const container =
+        document.getElementById(
+            "weightedPathwayCharts"
+        );
+
+    let html = `
+
+        <h3>
+            Weighted Criteria Comparison
+        </h3>
+
+        <div class="comparison-grid">
+
+            <div class="criteria-column">
+
+                <div class="corner-cell"></div>
+
+    `;
+
+    criteria.forEach(criterion => {
+
+        html += `
+            <div class="criteria-label">
+                ${criterion}
+            </div>
+        `;
+
+    });
+
+    html += `
+            </div>
+    `;
+
+    pathways.forEach(pathway => {
+
+        html += `
+
+            <div class="pathway-column">
+
+                <div class="pathway-header">
+                    ${pathway}
+                </div>
+
+        `;
+
+        criteria.forEach(criterion => {
+
+            const score =
+                responses[pathway][criterion];
+
+            const weight =
+                weights[criterion];
+
+            const factor =
+                weight / 5;
+
+            const weightedMin =
+                score.min * factor;
+
+            const weightedMax =
+                score.max * factor;
+
+            html += `
+
+                <div class="range-track">
+
+                    <div
+                        class="range-bar"
+                        style="
+                            left:${weightedMin}%;
+
+                            width:${
+                                weightedMax
+                                -
+                                weightedMin
+                            }%;
+                        ">
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        html += `
+            </div>
+        `;
+
+    });
+
+    html += `
+        </div>
+    `;
 
     container.innerHTML = html;
 
