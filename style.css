@@ -431,3 +431,11 @@ h3 {
     z-index: 10;
 
 }
+
+.criterion-weight {
+
+    color: #2563eb;
+
+    font-weight: bold;
+
+}
