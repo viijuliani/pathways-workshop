@@ -672,17 +672,24 @@ function renderWeightedChart() {
                     class="weighted-track">
 
                     <div
-                        class="weighted-range"
-
                         style="
-                            left:${rank.low}%;
-
-                            width:${
-                                rank.high
-                                -
-                                rank.low
-                            }%;
+                            position:relative;
+                            height:30px;
+                            background:red;
+                            margin-bottom:10px;
                         ">
+                    
+                        <div
+                            style="
+                                position:absolute;
+                                left:${rank.low}%;
+                                width:${rank.high - rank.low}%;
+                                height:30px;
+                                background:orange;
+                                border:2px solid black;
+                            ">
+                        </div>
+                    
                     </div>
 
                 </div>
