@@ -368,3 +368,55 @@ h3 {
 
 }
 
+.weighted-row {
+
+    margin-bottom: 25px;
+
+}
+
+.weighted-label {
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+
+}
+
+.weighted-track {
+
+    position: relative;
+
+    height: 28px;
+
+    background: #eceff1;
+
+    border-radius: 4px;
+
+}
+
+.weighted-range {
+
+    position: absolute;
+
+    top: 0;
+
+    height: 28px;
+
+    background: orange;
+
+    border: 2px solid black;
+
+    border-radius: 4px;
+
+}
+
+.weighted-values {
+
+    margin-top: 4px;
+
+    font-size: 13px;
+
+    color: #555;
+
+}
+
