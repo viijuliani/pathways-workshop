@@ -384,14 +384,43 @@ function renderPathwayCharts() {
             "pathwayCharts"
         );
 
-    let html = "";
+    let html = `
+
+        <div class="comparison-grid">
+
+            <div class="criteria-column">
+
+                <div class="corner-cell"></div>
+    `;
+
+    // Criteria column
+
+    criteria.forEach(criterion => {
+
+        html += `
+            <div class="criteria-label">
+                ${criterion}
+            </div>
+        `;
+
+    });
+
+    html += `
+            </div>
+    `;
+
+    // Pathway columns
 
     pathways.forEach(pathway => {
 
         html += `
-            <div class="pathway-card">
 
-                <h3>${pathway}</h3>
+            <div class="pathway-column">
+
+                <div class="pathway-header">
+                    ${pathway}
+                </div>
+
         `;
 
         criteria.forEach(criterion => {
@@ -401,24 +430,15 @@ function renderPathwayCharts() {
 
             html += `
 
-                <div class="criterion-chart">
+                <div class="range-track">
 
-                    <div>
-                        ${criterion}
-                    </div>
+                    <div
+                        class="range-bar"
+                        style="
+                            left:${score.min}%;
 
-                    <div class="range-track">
-
-                        <div
-                            class="range-bar"
-
-                            style="
-                                left:${score.min}%;
-
-                                width:${score.max - score.min}%;
-                            ">
-                        </div>
-
+                            width:${score.max - score.min}%;
+                        ">
                     </div>
 
                 </div>
@@ -432,6 +452,10 @@ function renderPathwayCharts() {
         `;
 
     });
+
+    html += `
+        </div>
+    `;
 
     container.innerHTML = html;
 
