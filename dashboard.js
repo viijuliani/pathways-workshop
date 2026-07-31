@@ -54,6 +54,9 @@ async function loadSummary() {
 
         const data =
             JSON.parse(text);
+        console.log("SUMMARY DATA");
+        console.log(data);
+
 
         let html = "";
 
