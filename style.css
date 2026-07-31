@@ -179,3 +179,17 @@ h3 {
     background: black;
 
 }
+
+    .dashboard-scale {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
