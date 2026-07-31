@@ -255,9 +255,180 @@ function saveAndNext() {
 
     } else {
 
-        renderWeightingPage();
+        renderResultsDashboard();
 
     }
+
+}
+
+function renderResultsDashboard() {
+
+    const survey =
+        document.getElementById("survey");
+
+    survey.innerHTML = `
+
+        <div class="card">
+
+            <h2>
+                Pathway Results
+            </h2>
+
+            <div id="aggregateChart"></div>
+
+            <hr>
+
+            <div id="pathwayCharts"></div>
+
+            <div class="button-row">
+
+                <button
+                    id="weightBtn">
+
+                    Weight Criteria
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+    renderAggregateChart();
+
+    renderPathwayCharts();
+
+    document
+        .getElementById("weightBtn")
+        .addEventListener(
+            "click",
+            renderWeightingPage
+        );
+
+}
+
+function renderAggregateChart() {
+
+    const chart =
+        document.getElementById(
+            "aggregateChart"
+        );
+
+    let html =
+        "<h3>Overall Pathway Scores</h3>";
+
+    pathways.forEach(pathway => {
+
+        let total = 0;
+
+        let count = 0;
+
+        criteria.forEach(criterion => {
+
+            const score =
+                responses[pathway][criterion];
+
+            const midpoint =
+                score.min +
+                (
+                    (score.max - score.min)
+                    / 2
+                );
+
+            total += midpoint;
+
+            count++;
+
+        });
+
+        const average =
+            total / count;
+
+        html += `
+
+            <div class="simple-bar-row">
+
+                <div>
+                    ${pathway}
+                </div>
+
+                <div class="simple-bar">
+
+                    <div
+                        class="simple-fill"
+                        style="
+                        width:${average}%;
+                        ">
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    chart.innerHTML = html;
+
+}
+
+function renderPathwayCharts() {
+
+    const container =
+        document.getElementById(
+            "pathwayCharts"
+        );
+
+    let html = "";
+
+    pathways.forEach(pathway => {
+
+        html += `
+            <h3>${pathway}</h3>
+        `;
+
+        criteria.forEach(criterion => {
+
+            const score =
+                responses[pathway][criterion];
+
+            html += `
+
+                <div class="criterion-chart">
+
+                    <div>
+                        ${criterion}
+                    </div>
+
+                    <div class="range-track">
+
+                        <div
+                            class="range-bar"
+
+                            style="
+                                left:${score.min}%;
+
+                                width:${
+                                    score.max
+                                    -
+                                    score.min
+                                }%;
+                            ">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    });
+
+    container.innerHTML = html;
 
 }
 
