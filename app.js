@@ -935,6 +935,8 @@ function renderImpactSummary() {
 
     container.innerHTML = html;
 
+    console.log(results);
+
 }
 
 function renderWeightedPathwayCharts() {
