@@ -282,3 +282,89 @@ h3 {
 
 }
 
+.comparison-grid {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 30px;
+
+    align-items: flex-start;
+
+}
+
+.criteria-column {
+
+    width: 180px;
+
+    flex-shrink: 0;
+
+}
+
+.criteria-label {
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    font-weight: bold;
+
+}
+
+.corner-cell {
+
+    height: 50px;
+
+}
+
+.pathway-column {
+
+    flex: 1;
+
+    min-width: 120px;
+
+}
+
+.pathway-header {
+
+    height: 50px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    color: #1e3a8a;
+
+}
+
+.range-track {
+
+    position: relative;
+
+    height: 24px;
+
+    background: #f3f4f6;
+
+    margin-bottom: 16px;
+
+    border-radius: 4px;
+
+}
+
+.range-bar {
+
+    position: absolute;
+
+    top: 0;
+
+    height: 24px;
+
+    background: orange;
+
+    border: 1px solid #333;
+
+}
+
