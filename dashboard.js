@@ -126,6 +126,7 @@ async function loadSummary() {
 
         });
 
+        console.log(html);
         document
             .getElementById("summaryChart")
             .innerHTML = html;
