@@ -532,7 +532,7 @@ function renderWeightingPage() {
                     id="submitBtn"
                     ${getTotalWeight() !== 4 ? "disabled" : ""}
                 >
-                    Submit
+                    Review Weighted Results
                 </button>
 
             </div>
